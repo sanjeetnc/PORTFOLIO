@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container" data-aos="fade-up">
+  <h2>Hard Skills</h2>
+  <div class="skills-grid">
+    {% for s in hard %}
+      <div class="skill-card" data-level="{{ s.level }}">
+        <h4>{{ s.name }}</h4>
+        <div class="progress"><div class="bar" style="width:0"></div></div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <h2 style="margin-top:2rem">Soft Skills</h2>
+  <div class="skills-grid">
+    {% for s in soft %}
+      <div class="skill-card" data-level="{{ s.level }}">
+        <h4>{{ s.name }}</h4>
+        <div class="progress"><div class="bar" style="width:0"></div></div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

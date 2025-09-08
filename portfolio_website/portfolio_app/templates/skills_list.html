@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container" data-aos="fade-up">
+  <h2>{{ kind }}</h2>
+  <div class="skills-grid">
+    {% for s in skills %}
+      <div class="skill-card" data-level="{{ s.level }}">
+        <h4>{{ s.name }}</h4>
+        <div class="progress"><div class="bar" style="width:0"></div></div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

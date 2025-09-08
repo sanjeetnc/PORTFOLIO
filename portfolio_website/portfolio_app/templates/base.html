@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}My Portfolio{% endblock %}</title>
+
+  <!-- AOS for scroll animations -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="{% url 'home' %}">SANJIT NC</a>
+      <nav>
+        <a href="{% url 'skills' %}">Skills</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'certifications' %}">Certifications</a>
+        <a href="/admin/">Admin</a>
+      </nav>
+      <button id="menuBtn" class="hamburger">☰</button>
+    </div>
+  </header>
+
+  <main id="pageContent">
+    {% if messages %}
+      <div class="messages">
+        {% for m in messages %}
+          <div class="msg {{ m.tags }}">{{ m }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© {{ now.year }} SANJIT NC • Built with Django</div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
+  <script> AOS.init({duration:700, once:true, easing:"ease-out-cubic"}); </script>
+</body>
+</html>

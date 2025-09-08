@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container" data-aos="fade-up">
+  <h2>Projects</h2>
+  <div class="grid projects-grid">
+    {% for p in projects %}
+      <div class="project-card" tabindex="0">
+        <div class="thumb">
+          {% if p.image %}
+            <img src="{{ p.image.url }}" alt="{{ p.title }}">
+          {% else %}
+            <div class="placeholder">{{ p.title|slice:":1" }}</div>
+          {% endif %}
+        </div>
+        <div class="project-info">
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.short_desc|truncatewords:18 }}</p>
+          {% if p.repo_url %}<a href="{{ p.repo_url }}" target="_blank">Repo</a>{% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

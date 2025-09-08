@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container" data-aos="fade-up">
+  <h2>Certifications</h2>
+  <div class="certs-grid">
+    {% for c in certs %}
+      <div class="cert-card" data-aos="zoom-in">
+        {% if c.badge_image %}<img src="{{ c.badge_image.url }}" alt="{{ c.title }}">{% endif %}
+        <div class="cert-body">
+          <h4>{{ c.title }}</h4>
+          <p class="issuer">{{ c.issuer }} • {{ c.issue_date }}</p>
+          {% if c.credential_url %}<a class="small-link" href="{{ c.credential_url }}" target="_blank">Verify</a>{% endif %}
+          {% if user.is_staff %}<p><a href="{% url 'upload_certification' %}">Upload new cert</a></p>{% endif %}
+        </div>
+      </div>
+    {% empty %}
+      <p>No certifications yet.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+

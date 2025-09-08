@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Home - My Portfolio{% endblock %}
+{% block content %}
+<section class="hero" data-aos="fade-up">
+  <div class="container hero-inner">
+    <h1>Hi, I'm <span class="accent">Sanjit NC</span></h1>
+    <p class="lead">I build web apps and craft UX. I'm open to internships & freelance work.</p>
+    <div class="cta">
+      <a href="{% url 'projects' %}" class="btn">See Projects</a>
+      <a href="{% url 'skills' %}" class="btn btn-ghost">Skills</a>
+    </div>
+  </div>
+</section>
+
+<section class="container" data-aos="fade-up">
+  <h2>Featured Projects</h2>
+  <div class="grid">
+    {% for p in featured %}
+      <article class="card" data-gsap="card">
+        <div class="card-body">
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.short_desc|truncatewords:20 }}</p>
+          <div class="meta">
+            <span>{{ p.tech_stack }}</span>
+            {% if p.repo_url %} <a class="link" href="{{ p.repo_url }}" target="_blank">Repo</a>{% endif %}
+          </div>
+        </div>
+      </article>
+    {% empty %}
+      <p>No projects yet — add via admin.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
